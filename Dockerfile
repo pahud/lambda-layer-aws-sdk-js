@@ -1,4 +1,7 @@
-FROM lambci/lambda:build-nodejs12.x as builder
+# FROM lambci/lambda:build-nodejs12.x as builder
+ARG DOCKER_MIRROR=''
+FROM ${DOCKER_MIRROR}lambci/lambda:build-nodejs12.x as builder
+
 
 WORKDIR /root/nodejs
 
