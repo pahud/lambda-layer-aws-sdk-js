@@ -5,6 +5,8 @@ LAMBDA_REGION ?= us-east-1
 LAMBDA_ROLE_ARN ?= arn:aws:iam::$(AWS_ACCOUNT_ID):role/service-role/LambdaDefaultRole
 AWS_PROFILE ?= default
 PAYLOAD ?= {"foo":"bar"}
+DOCKER_MIRROR ?= ''
+
 
 ifeq ($(shell test -e AWSCLI_VERSION && echo -n yes),yes)
     SemanticVersion = $(shell cat AWSCLI_VERSION)
@@ -20,7 +22,7 @@ endif
 build: layer-build
 
 layer-build:
-	@bash build.sh
+	@DOCKER_MIRROR=$(DOCKER_MIRROR) bash build.sh
 	@echo "[OK] Layer built at ./layer.zip"
 	@ls -alh ./layer.zip
 	
