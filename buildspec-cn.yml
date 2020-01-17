@@ -23,4 +23,4 @@ phases:
   post_build:
       commands:
         - BUILT_VERSION=$(cat VERSION) 
-        - aws --region ${AWS_REGION} sns publish --topic-arn $SNS_TOPIC_ARN --message "[OK] aws-lambda-layer-aws-sdk-js version ${BUILT_VERSION} published to SAR us-east-1"
+        - aws --region ${AWS_REGION} sns publish --topic-arn $SNS_TOPIC_ARN --message "[OK] aws-lambda-layer-aws-sdk-js version ${BUILT_VERSION} published to SAR ${AWS_REGION}"
